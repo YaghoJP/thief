@@ -1,6 +1,7 @@
 #include "game_manager.h"
 
 u16 score = 0;
+char* score_hud = "";
 
 bool signal_game_started = FALSE;
 bool signal_game_over = FALSE;

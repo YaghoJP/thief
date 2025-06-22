@@ -7,6 +7,7 @@ typedef struct{
     Character* ch;
     u8 value;
     bool key;
+    bool is_active;
 }Collectable;
 
 Collectable* COLLECTABLE_init(u16* ind, f16 x, f16 y, const SpriteDefinition* spr);

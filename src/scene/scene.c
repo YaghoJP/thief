@@ -30,9 +30,11 @@ void SCENE_unload()
     VDP_clearPlane(BG_B, TRUE);
     SYS_doVBlankProcess();
 
-    signal_game_over = FALSE;
     signal_game_started = FALSE;
+    signal_game_over = FALSE;
     signal_player_is_dead = FALSE;
+    signal_key_collected = FALSE;
+    signal_game_won = FALSE;
 }
 
 void SCENE_load(u8 scene)
@@ -169,10 +171,15 @@ void SCENE_level_1()
     Enemy* e2 = ENEMY_init(&vRAM_tile_user_index, 144, 90, PATROL, 230, 90, TRUE, 4, &spr_enemy_patrol_red);
     Enemy* e3 = ENEMY_init(&vRAM_tile_user_index, 160, 110, PATROL, 260, 110, TRUE, 4, &spr_enemy_patrol_red);
 
-    Enemy* e4 = ENEMY_init(&vRAM_tile_user_index, 80, 32, PATROL, 80, 80, FALSE, 1, &spr_enemy_patrol_red);
+    Enemy* e4 = ENEMY_init(&vRAM_tile_user_index, 80, 32, PATROL, 80, 140, FALSE, 1, &spr_enemy_patrol_red);
 
 
+    char gems[5];
     while(!signal_game_over && !signal_game_won){
+
+        VDP_drawText("Score: ", 26, 1);
+	    intToStr(score, gems, 3);
+        VDP_drawText(gems, 33, 1);
 
         PLAYER_update(p, level);
         e->ENEMY_update(e, p->ch);

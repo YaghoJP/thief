@@ -89,7 +89,9 @@ bool PLAYER_check_end_level(Player *p)
     if(signal_key_collected && F16_toInt(p->ch->no->y) == -18)
         return(TRUE);   
     if(!signal_key_collected && F16_toInt(p->ch->no->y) == -18) 
-        p->ch->vel.y = 18;
+    {
+        p->ch->vel.y = F16(18);
+    }
     
     return FALSE;
 }

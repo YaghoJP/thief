@@ -5,6 +5,7 @@ Collectable* COLLECTABLE_init(u16* ind, f16 x, f16 y, const SpriteDefinition* sp
     c->ch = CHARACTER_init(ind, x, y, PAL_PLAYER, spr);
     c->value = 1;
     SPR_setAnim(c->ch->no->sprite, 0);
+    c->is_active = TRUE;
     return c;
 }
 

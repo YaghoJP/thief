@@ -105,7 +105,12 @@ void LEVEL_collect(f16 x, f16 y, Collectable** col, u8 qt_collectables)
     for(s16 i=0; i<qt_collectables; i++)
     {
         if(F16_toInt(col[i]->ch->no->x) == px && F16_toInt(col[i]->ch->no->y) == py){
-            COLLECTABLE_free(col[i]);
+            if(col[i]->is_active)
+            {
+                col[i]->is_active = FALSE;
+                score += col[i]->value;
+                COLLECTABLE_free(col[i]);
+            }
         }
     }
 }

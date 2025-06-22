@@ -6,6 +6,7 @@
 
 //globals
 extern u16 score;
+extern char* score_hud;
 
 //Signals
 extern bool signal_game_started;
