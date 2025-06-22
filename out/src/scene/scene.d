@@ -56,4 +56,5 @@ out/src/scene/scene.o: src/scene/scene.c src/scene/scene.h \
  C:/Users/yagho/Documents/dev/jogos/sgdk211/inc/sprite_eng.h \
  src/background/background.h src/level/level.h \
  src/entities/collectables.h src/base/character.h src/base/node.h \
- res/sprites.h src/entities/player.h src/entities/enemy.h
+ src/entities/chest.h src/entities/collectables.h res/sprites.h \
+ src/entities/player.h src/entities/enemy.h

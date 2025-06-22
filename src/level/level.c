@@ -7,7 +7,7 @@ void LEVEL_collectables_init(u16* ind, const u16 map_collision[280], Level *l);
 u16 LEVEL_1_collision[280] = {
 2,3,3,3,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
 2,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,2,
-2,1,0,0,1,0,1,2,1,1,1,1,1,6,1,1,1,1,1,2,
+2,1,0,0,1,0,1,2,6,1,1,1,1,1,1,1,1,1,1,2,
 2,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,2,
 2,2,2,2,1,1,1,2,2,2,2,2,2,2,2,0,1,1,2,2,
 2,5,5,5,1,1,1,2,1,1,1,1,1,1,1,1,1,1,5,2,
@@ -92,12 +92,12 @@ void LEVEL_collectables_init(u16* ind, const u16 map_collision[280], Level *l)
             u16 tile = map_collision[y * MAP_WIDTH + x];
 
             if(tile == 5) l->c[l->qt_collectables++] = COLLECTABLE_init(ind, x*16, y*16, &spr_diamond);
-            if(tile == 6) l->c[l->qt_collectables++] = COLLECTABLE_init(ind, x*16, y*16, &spr_key);
+            if(tile == 6) l->chest_key = CHEST_init(ind, x*16, y*16, &spr_chest);
         }
     }
 }
 
-void LEVEL_collect(f16 x, f16 y, Collectable** col, u8 qt_collectables, bool is_key)
+void LEVEL_collect(f16 x, f16 y, Collectable** col, u8 qt_collectables)
 {
     f16 px = x*16;
     f16 py = y*16;
@@ -105,8 +105,14 @@ void LEVEL_collect(f16 x, f16 y, Collectable** col, u8 qt_collectables, bool is_
     for(s16 i=0; i<qt_collectables; i++)
     {
         if(F16_toInt(col[i]->ch->no->x) == px && F16_toInt(col[i]->ch->no->y) == py){
-            if(is_key) signal_key_collected = TRUE;
             COLLECTABLE_free(col[i]);
         }
     }
+}
+
+void LEVEL_key_collect(Chest* c)
+{
+    //CHEST_free(c);
+    SPR_setAnim(c->ch->no->sprite, 1);
+    signal_key_collected = TRUE;
 }

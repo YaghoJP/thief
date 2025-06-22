@@ -55,4 +55,4 @@ out/src/level/level.o: src/level/level.c src/level/level.h \
  C:/Users/yagho/Documents/dev/jogos/sgdk211/inc/dma.h \
  C:/Users/yagho/Documents/dev/jogos/sgdk211/inc/sprite_eng.h \
  src/entities/collectables.h src/base/character.h src/base/node.h \
- res/sprites.h
+ src/entities/chest.h src/entities/collectables.h res/sprites.h

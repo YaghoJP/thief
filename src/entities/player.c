@@ -50,6 +50,10 @@ bool PLAYER_input(Player *p)
         p->ch->anim_sprite = ANIM_UP;
         return TRUE;
     }
+    if (button & BUTTON_A) 
+    {
+        kprintf("Testando");
+    }
 
     p->ch->anim_sprite = 0;
     SPR_setAnim(p->ch->no->sprite, p->ch->anim_sprite);
@@ -116,12 +120,12 @@ void PLAYER_check_collision(Player *p, Level *l)
         }
         if (l->collision_data[y * COLLISION_COLUMN + xtile_left] == DIAMONDS)
         {
-            LEVEL_collect(xtile_left, y, l->c, l->qt_collectables, FALSE);
+            LEVEL_collect(xtile_left, y, l->c, l->qt_collectables);
             break;
         }
         if (l->collision_data[y * COLLISION_COLUMN + xtile_left] == KEY)
         {
-            LEVEL_collect(xtile_left, y, l->c, l->qt_collectables, TRUE);
+            LEVEL_key_collect(l->chest_key);
             break;
         }
     }
@@ -135,12 +139,12 @@ void PLAYER_check_collision(Player *p, Level *l)
         }
         if (l->collision_data[y * COLLISION_COLUMN + xtile_right] == DIAMONDS)
         {
-            LEVEL_collect(xtile_right, y, l->c, l->qt_collectables, FALSE);
+            LEVEL_collect(xtile_right, y, l->c, l->qt_collectables);
             break;
         }
         if (l->collision_data[y * COLLISION_COLUMN + xtile_right] == KEY)
         {
-            LEVEL_collect(xtile_right, y, l->c, l->qt_collectables, TRUE);
+            LEVEL_key_collect(l->chest_key);
             break;
         }
     }
@@ -156,13 +160,13 @@ void PLAYER_check_collision(Player *p, Level *l)
 
         if (l->collision_data[ytile_up * COLLISION_COLUMN + x] == DIAMONDS)
         {
-            LEVEL_collect(x, ytile_up, l->c, l->qt_collectables, FALSE);
+            LEVEL_collect(x, ytile_up, l->c, l->qt_collectables);
             break;
         }
 
         if (l->collision_data[ytile_up * COLLISION_COLUMN + x] == KEY)
         {
-            LEVEL_collect(x, ytile_up, l->c, l->qt_collectables, TRUE);
+            LEVEL_key_collect(l->chest_key);
             break;
         }
     }
@@ -178,13 +182,13 @@ void PLAYER_check_collision(Player *p, Level *l)
 
         if(l->collision_data[ytile_down * COLLISION_COLUMN + x] == DIAMONDS)
         {
-            LEVEL_collect(x, ytile_down, l->c, l->qt_collectables, FALSE);
+            LEVEL_collect(x, ytile_down, l->c, l->qt_collectables);
             break;
         }
 
         if(l->collision_data[ytile_down * COLLISION_COLUMN + x] == KEY)
         {
-            LEVEL_collect(x, ytile_down, l->c, l->qt_collectables, TRUE);
+            LEVEL_key_collect(l->chest_key);
             break;
         }
     }

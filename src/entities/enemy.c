@@ -75,7 +75,7 @@ void PATROL_update(Enemy* e, Character* p)
 
             }else
             {
-                e->ch->anim_sprite -= 1;
+                e->ch->anim_sprite += 1;
                 e->in_going = FALSE;
             }
         }
@@ -87,7 +87,7 @@ void PATROL_update(Enemy* e, Character* p)
                 else e->ch->no->y -= F16_mul(CHARACTER_SPEED, F16(0.8));
             }else
             {
-                e->ch->anim_sprite += 1;
+                e->ch->anim_sprite -= 1;
                 e->in_going = TRUE;
             }
         }

@@ -55,4 +55,5 @@ out/src/entities/player.o: src/entities/player.c src/entities/player.h \
  C:/Users/yagho/Documents/dev/jogos/sgdk211/inc/dma.h \
  src/singletons/game_manager.h \
  C:/Users/yagho/Documents/dev/jogos/sgdk211/inc/sprite_eng.h \
- src/level/level.h src/entities/collectables.h res/sprites.h
+ src/level/level.h src/entities/collectables.h src/entities/chest.h \
+ src/entities/collectables.h res/sprites.h

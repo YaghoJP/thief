@@ -1,5 +1,5 @@
-out/src/main.o: src/main.c src/scene/scene.h \
- src/singletons/game_manager.h \
+out/src/entities/chest.o: src/entities/chest.c src/entities/chest.h \
+ src/base/character.h src/base/node.h \
  C:/Users/yagho/Documents/dev/jogos/sgdk211/inc/genesis.h \
  C:/Users/yagho/Documents/dev/jogos/sgdk211/inc/types.h \
  C:/Users/yagho/Documents/dev/jogos/sgdk211/inc/config.h \
@@ -53,8 +53,6 @@ out/src/main.o: src/main.c src/scene/scene.h \
  C:/Users/yagho/Documents/dev/jogos/sgdk211/inc/string.h \
  C:/Users/yagho/Documents/dev/jogos/sgdk211/inc/maths.h \
  C:/Users/yagho/Documents/dev/jogos/sgdk211/inc/dma.h \
+ src/singletons/game_manager.h \
  C:/Users/yagho/Documents/dev/jogos/sgdk211/inc/sprite_eng.h \
- src/background/background.h src/level/level.h \
- src/entities/collectables.h src/base/character.h src/base/node.h \
- src/entities/chest.h src/entities/collectables.h res/sprites.h \
- src/entities/player.h src/entities/enemy.h
+ src/entities/collectables.h
