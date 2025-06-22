@@ -1,5 +1,7 @@
 {
     "files.associations": {
-        "collectables.h": "c"
+        "collectables.h": "c",
+        "level.h": "c",
+        "game_manager.h": "c"
     }
 }

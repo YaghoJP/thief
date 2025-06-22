@@ -26,4 +26,6 @@ struct Character{
 
 Character* CHARACTER_init(u16* ind, f16 x, f16 y, u8 pal, const SpriteDefinition* spr);
 void CHARACTER_free(Character *c);
+
+void CHARACTER_hud_update(Character* c, bool is_key);
 #endif

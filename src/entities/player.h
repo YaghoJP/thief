@@ -3,6 +3,8 @@
 
 #include "base/character.h"
 #include "level/level.h"
+#include "singletons/game_manager.h"
+#include "enemy.h"
 
 #define ANIM_RIGTH 4
 #define ANIM_LEFT 3
@@ -16,9 +18,6 @@
 
 #define COLLISION_COLUMN 20
 
-#define WAll 2
-#define END_LEVEL 3
-
 #define PLAYER_OFFSET_LEFT 1
 #define PLAYER_OFFSET_RIGHT 15
 #define PLAYER_OFFSET_UP 1
@@ -29,14 +28,17 @@ extern s16 timer_to_dead;
 
 typedef struct {
     Character* ch; 
+    bool is_fireball;
+    bool wall_coll;
 } Player;
 
 bool PLAYER_input(Player *p);
-Player* PLAYER_init(u16* ind, f16 x, f16 y, const SpriteDefinition* spr);
+Player* PLAYER_init(u16* ind, f16 x, f16 y, const SpriteDefinition* spr, bool is_fb);
 void PLAYER_free(Player* p);
 void PLAYER_update(Player *p, Level *l);
 void PLAYER_check_collision(Player *p, Level *l);
 bool PLAYER_check_end_level(Player *p);
 void PLAYER_take_damage(Character* c);
+void PLAYER_fireball_update(Player *p, Level *l, Enemy* e, Player* p);
 
 #endif

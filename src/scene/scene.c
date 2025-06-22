@@ -1,10 +1,14 @@
 #include "scene.h"
 
+bool game_over = FALSE;
+
 //Scenes
 void SCENE_screen_start();
 void SCENE_screen_game_over();
 void SCENE_screen_credits();
 void SCENE_level_1();
+void SCENE_level_2();
+void SCENE_level_3();
 
 void SCENE_init()
 {
@@ -86,6 +90,7 @@ void SCENE_screen_game_over()
         SPR_update();
         SYS_doVBlankProcess();
     }
+    game_over = TRUE;
     SCENE_load(SCREEN_START);
 }
 
@@ -152,6 +157,12 @@ void SCENE_screen_start()
     }
 
     CHARACTER_free(diamond);
+
+    if(game_over)
+    {
+        game_over = FALSE;
+        SCENE_load(LEVEL_1);
+    }
 }
 
 void SCENE_level_1()
@@ -162,8 +173,14 @@ void SCENE_level_1()
 
     BACKGROUND_init(&vRAM_tile_user_index, &bg);
 
+    Character *diamond = MEM_alloc(sizeof(Character));
+    diamond = CHARACTER_init(&vRAM_tile_user_index, 290, 0, PAL_PLAYER, &hud_diamond);
 
-    Player* p = PLAYER_init(&vRAM_tile_user_index, SCREEN_W-60, SCREEN_H-50, &spr_thief);
+    Character *key = MEM_alloc(sizeof(Character));
+    key = CHARACTER_init(&vRAM_tile_user_index, 300, 1, PAL_PLAYER, &hud_key);
+
+
+    Player* p = PLAYER_init(&vRAM_tile_user_index, SCREEN_W-60, SCREEN_H-50, &spr_thief, FALSE);
 
     Enemy* e = ENEMY_init(&vRAM_tile_user_index, 150, 18, PATROL, 280, 18, TRUE, 4, &spr_enemy_patrol_red);
     Enemy* e1 = ENEMY_init(&vRAM_tile_user_index, 150, 40, PATROL, 220, 40, TRUE, 4, &spr_enemy_patrol_red);
@@ -177,11 +194,15 @@ void SCENE_level_1()
     char gems[5];
     while(!signal_game_over && !signal_game_won){
 
-        VDP_drawText("Score: ", 26, 1);
+        VDP_drawText("Score: ", 26, 0);
 	    intToStr(score, gems, 3);
-        VDP_drawText(gems, 33, 1);
+        VDP_drawText(gems, 33, 0);
+
+        CHARACTER_hud_update(diamond, FALSE);
+        CHARACTER_hud_update(key, TRUE);
 
         PLAYER_update(p, level);
+        
         e->ENEMY_update(e, p->ch);
         e1->ENEMY_update(e1, p->ch);
         e2->ENEMY_update(e2, p->ch);
@@ -199,5 +220,72 @@ void SCENE_level_1()
     ENEMY_free(e3);
     ENEMY_free(e4);
 
+    CHARACTER_free(key);
+    CHARACTER_free(diamond);
+
     LEVEL_free(level);
+}
+
+void SCENE_level_2()
+{
+    u16 vRAM_tile_user_index = TILE_USER_INDEX;
+    
+    Level* level = LEVEL_init(&vRAM_tile_user_index, &map_level_2, &ts_level_2, &pal_level_2, 2);
+
+    BACKGROUND_init(&vRAM_tile_user_index, &bg);
+
+    Character *diamond = MEM_alloc(sizeof(Character));
+    diamond = CHARACTER_init(&vRAM_tile_user_index, 290, 0, PAL_PLAYER, &hud_diamond);
+
+    Character *key = MEM_alloc(sizeof(Character));
+    key = CHARACTER_init(&vRAM_tile_user_index, 300, 1, PAL_PLAYER, &hud_key);
+
+    Player* p = PLAYER_init(&vRAM_tile_user_index, 35, 195, &spr_thief, FALSE);
+
+    Enemy* e = ENEMY_init(&vRAM_tile_user_index, 40, 80, PATROL, 170, 80, TRUE, 4, &spr_enemy_patrol_red);
+    Enemy* e1 = ENEMY_init(&vRAM_tile_user_index, 60, 110, PATROL, 130, 110, TRUE, 4, &spr_enemy_patrol_red);
+    
+    Enemy* e2 = ENEMY_init(&vRAM_tile_user_index, 40, 25, PATROL, 180, 25, TRUE, 4, &spr_enemy_patrol_red);
+    Enemy* e3 = ENEMY_init(&vRAM_tile_user_index, 60, 40, PATROL, 140, 40, TRUE, 4, &spr_enemy_patrol_red);
+
+    Enemy* e4 = ENEMY_init(&vRAM_tile_user_index, 176, 192, FIXED, 140, 40, FALSE, 0, &spr_enemy_fixed_gray);
+    Player* fb = PLAYER_init(&vRAM_tile_user_index, F16_toInt(e4->ch->no->x), F16_toInt(e4->ch->no->y) - 10, &spr_fireball, TRUE);
+
+    Enemy* e5 = ENEMY_init(&vRAM_tile_user_index, 240, 192, FIXED, 140, 40, FALSE, 0, &spr_enemy_fixed_gray);
+    Player* fb1 = PLAYER_init(&vRAM_tile_user_index, F16_toInt(e4->ch->no->x), F16_toInt(e4->ch->no->y) - 10, &spr_fireball, TRUE);
+
+    char gems[5];
+    while(!signal_game_over && !signal_game_won){
+
+        VDP_drawText("Score: ", 26, 0);
+	    intToStr(score, gems, 3);
+        VDP_drawText(gems, 33, 0);
+
+        CHARACTER_hud_update(diamond, FALSE);
+        CHARACTER_hud_update(key, TRUE);
+
+        PLAYER_update(p, level);
+        
+        e->ENEMY_update(e, p->ch);
+        e1->ENEMY_update(e1, p->ch);
+        e2->ENEMY_update(e2, p->ch);
+        e3->ENEMY_update(e3, p->ch);
+
+        PLAYER_fireball_update(fb, level, e4, p);
+        PLAYER_fireball_update(fb1, level, e5, p);
+        
+        SPR_update();
+        SYS_doVBlankProcess();
+    }
+
+    PLAYER_free(p);
+    CHARACTER_free(key);
+    CHARACTER_free(diamond);
+    LEVEL_free(level);
+}
+
+
+void SCENE_level_3()
+{
+
 }

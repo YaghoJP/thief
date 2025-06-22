@@ -12,4 +12,6 @@ void SCENE_init();
 void SCENE_load(u8 scene);
 void SCENE_unload();
 
+extern bool game_over;
+
 #endif

@@ -45,7 +45,10 @@ void PATROL_update(Enemy* e, Character* p)
             if(F16_toInt(e->ch->no->x) < e->pos_x_end)
             {
                 if(ENEMY_check_player_collision(e, p)) ENEMY_attack(p);
-                else e->ch->no->x += F16_mul(CHARACTER_SPEED, F16(0.8));
+                else{ 
+                    e->ch->no->x += F16_mul(CHARACTER_SPEED, F16(0.8));
+                    SPR_setVisibility(p->no->sprite, VISIBLE);
+                }
             }else
             {
                 e->ch->anim_sprite -= 1;
@@ -57,7 +60,10 @@ void PATROL_update(Enemy* e, Character* p)
             if(e->ch->no->x >= e->pos_x_start)
             {
                 if(ENEMY_check_player_collision(e, p)) ENEMY_attack(p);
-                else e->ch->no->x -= F16_mul(CHARACTER_SPEED, F16(0.8));
+                else {
+                    e->ch->no->x -= F16_mul(CHARACTER_SPEED, F16(0.8));
+                    SPR_setVisibility(p->no->sprite, VISIBLE);
+                }
             }else
             {
                 e->ch->anim_sprite += 1;
@@ -71,7 +77,10 @@ void PATROL_update(Enemy* e, Character* p)
             if(F16_toInt(e->ch->no->y) < e->pos_y_end)
             {
                 if(ENEMY_check_player_collision(e, p)) ENEMY_attack(p);
-                else e->ch->no->y += F16_mul(CHARACTER_SPEED, F16(0.8));
+                else {
+                    e->ch->no->y += F16_mul(CHARACTER_SPEED, F16(0.8));
+                    SPR_setVisibility(p->no->sprite, VISIBLE);
+                }
 
             }else
             {
@@ -84,7 +93,11 @@ void PATROL_update(Enemy* e, Character* p)
             if(e->ch->no->y >= e->pos_y_start)
             {
                 if(ENEMY_check_player_collision(e, p)) ENEMY_attack(p);
-                else e->ch->no->y -= F16_mul(CHARACTER_SPEED, F16(0.8));
+                else 
+                {
+                    e->ch->no->y -= F16_mul(CHARACTER_SPEED, F16(0.8));
+                    SPR_setVisibility(p->no->sprite, VISIBLE);
+                }
             }else
             {
                 e->ch->anim_sprite -= 1;
@@ -97,7 +110,10 @@ void PATROL_update(Enemy* e, Character* p)
     SPR_setAnim(e->ch->no->sprite, e->ch->anim_sprite);
 }
 
-void FIXED_update(Enemy* e, Character* p);
+void FIXED_update(Enemy* e, Character* p)
+{
+    
+}
 
 
 bool ENEMY_check_player_collision(Enemy *e, Character* p)

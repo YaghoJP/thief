@@ -18,3 +18,16 @@ void CHARACTER_free(Character *c)
         MEM_free(c);
     }
 }
+
+void CHARACTER_hud_update(Character* c, bool is_key)
+{
+    if(is_key)
+    {
+        if(c->anim_sprite == 1) return;
+        if(signal_key_collected)
+        {
+            c->anim_sprite = 1;
+            SPR_setAnim(c->no->sprite, c->anim_sprite);
+        }
+    }
+}

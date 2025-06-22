@@ -57,4 +57,4 @@ out/src/main.o: src/main.c src/scene/scene.h \
  src/background/background.h src/level/level.h \
  src/entities/collectables.h src/base/character.h src/base/node.h \
  src/entities/chest.h src/entities/collectables.h res/sprites.h \
- src/entities/player.h src/entities/enemy.h
+ src/entities/player.h src/entities/enemy.h src/entities/enemy.h
