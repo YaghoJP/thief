@@ -17,6 +17,11 @@ PALETTE pal_level_3 "sprites/level_3/level_3_map.png"
 TILESET ts_level_4 "sprites/level_4/level_4_map.png" BEST ALL
 MAP map_level_4 "sprites/level_4/level_4_map.png" ts_level_4 BEST 0
 PALETTE pal_level_4 "sprites/level_4/level_4_map.png"
+
+TILESET ts_level_5 "sprites/level_5/level_5_map.png" BEST ALL
+MAP map_level_5 "sprites/level_5/level_5_map.png" ts_level_5 BEST 0
+PALETTE pal_level_5 "sprites/level_5/level_5_map.png"
+
 #-----------------Collectables-----------------
 SPRITE spr_diamond "sprites/collectables/diamond.png" 2 2 FAST 10
 SPRITE spr_key "sprites/collectables/key.png" 2 2 FAST 10
@@ -37,6 +42,7 @@ SPRITE spr_fireball "sprites/enemy/fireball.png" 2 2 FAST 0
 IMAGE start_screen "sprites/level_0/start.png" BEST
 IMAGE credits_screen "sprites/level_0/screen_credists.png" BEST
 IMAGE game_over_screen "sprites/level_0/game_over.png" BEST
+IMAGE victory_screen "sprites/level_0/victory.png" BEST
 
 #-----------------HUD-----------------
 SPRITE hud_diamond "sprites/hud/diamond_hud.png" 1 1 FAST 8

@@ -26,25 +26,25 @@ bool PLAYER_input(Player *p)
 
     if (button & BUTTON_RIGHT) 
     {
-        p->ch->vel.x = CHARACTER_SPEED;
+        p->ch->vel.x =  CHARACTER_SPEED + F16(0.3);
         p->ch->anim_sprite = ANIM_RIGTH;
         return TRUE;
     }
     if (button & BUTTON_LEFT) 
     {
-        p->ch->vel.x = -CHARACTER_SPEED;
+        p->ch->vel.x = - CHARACTER_SPEED - F16(0.3);
         p->ch->anim_sprite = ANIM_LEFT;
         return TRUE;
     }
     if (button & BUTTON_DOWN) 
     {
-        p->ch->vel.y = CHARACTER_SPEED;
+        p->ch->vel.y =  CHARACTER_SPEED + F16(0.3);
         p->ch->anim_sprite = ANIM_DOWN;
         return TRUE;
     }
     if (button & BUTTON_UP) 
     {
-        p->ch->vel.y  = -CHARACTER_SPEED;
+        p->ch->vel.y  = - CHARACTER_SPEED - F16(0.3);
         p->ch->anim_sprite = ANIM_UP;
         return TRUE;
     }
@@ -81,13 +81,14 @@ bool PLAYER_check_end_level(Player *p)
 {
     if(signal_key_collected && F16_toInt(p->ch->no->y) == -18)
     {
+        kprintf("OI");
         return(TRUE);   
     }
     if(!signal_key_collected && F16_toInt(p->ch->no->y) == -18) 
     {
         p->ch->vel.y = F16(18);
     }
-    if(F16_toInt(p->ch->no->y) == 221) 
+    if(F16_toInt(p->ch->no->y) >= 221) 
     {
         p->ch->vel.y = - F16(18);
     }

@@ -6,10 +6,12 @@ bool game_over = FALSE;
 void SCENE_screen_start();
 void SCENE_screen_game_over();
 void SCENE_screen_credits();
+void SCENE_screen_victory();
 void SCENE_level_1();
 void SCENE_level_2();
 void SCENE_level_3();
 void SCENE_level_4();
+void SCENE_level_5();
 
 void SCENE_init()
 {
@@ -64,15 +66,43 @@ void SCENE_load(u8 scene)
     case LEVEL_4:
         SCENE_level_4();
         break;
+    case LEVEL_5:
+        SCENE_level_5();
+        break;
     case SCREEN_CREDITS:
         SCENE_screen_credits();
         break;
     case SCREEN_GAME_OVER:
         SCENE_screen_game_over();
         break;
+    case SCREEN_VICTORY:
+        SCENE_screen_victory();
+        break;
     default:
         break;
     }
+}
+
+void SCENE_screen_victory()
+{
+    u16 VRAM_tile_index = TILE_USER_INDEX;
+
+    BACKGROUND_init(&VRAM_tile_index, &victory_screen);
+
+    SYS_doVBlankProcess();
+
+    while(TRUE)
+    {
+        u16 button = JOY_readJoypad(JOY_1);
+    
+        if(button & BUTTON_START){
+            break;
+        }
+
+        SPR_update();
+        SYS_doVBlankProcess();
+    }
+    SYS_hardReset();
 }
 
 void SCENE_screen_game_over()
@@ -465,6 +495,77 @@ void SCENE_level_4()
 
     ENEMY_free(e3);
     BULLET_free(b3);
+
+    ENEMY_free(e4);
+    ENEMY_free(e5);
+    ENEMY_free(e6);
+
+    PLAYER_free(p);
+    CHARACTER_free(key_icon);
+    CHARACTER_free(life_icon);
+    CHARACTER_free(diamond_icon);
+    LEVEL_free(level);
+}
+
+void SCENE_level_5()
+{
+    u16 vRAM_tile_user_index = TILE_USER_INDEX;
+    
+    Level* level = LEVEL_init(&vRAM_tile_user_index, &map_level_5, &ts_level_5, &pal_level_5, 5);
+
+    BACKGROUND_init(&vRAM_tile_user_index, &bg);
+
+    Character *diamond_icon = MEM_alloc(sizeof(Character));
+    diamond_icon = CHARACTER_init(&vRAM_tile_user_index, 290, 0, PAL_PLAYER, &hud_diamond);
+
+    Character *key_icon = MEM_alloc(sizeof(Character));
+    key_icon = CHARACTER_init(&vRAM_tile_user_index, 300, 1, PAL_PLAYER, &hud_key);
+
+    Character *life_icon = MEM_alloc(sizeof(Character));
+    life_icon = CHARACTER_init(&vRAM_tile_user_index, 185, 0, PAL_ENEMY, &hud_life);
+
+    Player* p = PLAYER_init(&vRAM_tile_user_index, 40, 195, &spr_thief);
+
+    Enemy* e = ENEMY_init(&vRAM_tile_user_index, 145, 46, PATROL, 258, 46, TRUE, 4, &spr_enemy_patrol_red);
+    Enemy* e1 = ENEMY_init(&vRAM_tile_user_index, 170, 64, PATROL, 258, 64, TRUE, 4, &spr_enemy_patrol_red);
+    
+    Enemy* e4 = ENEMY_init(&vRAM_tile_user_index, 120, 93, PATROL, 200, 93, TRUE, 4, &spr_enemy_patrol_red);
+    
+    Enemy* e2 = ENEMY_init(&vRAM_tile_user_index, 16, 160, FIXED, 0, 0, FALSE, 3, &spr_enemy_fixed_gray);
+    Bullet* b2 = BULLET_init(&vRAM_tile_user_index, F16_toInt(e2->ch->no->x)+10, F16_toInt(e2->ch->no->y), &spr_fireball, 3);
+
+    Enemy* e3 = ENEMY_init(&vRAM_tile_user_index, 225, 112, FIXED, 0, 0, FALSE, 1, &spr_enemy_fixed_gray);
+    Bullet* b3 = BULLET_init(&vRAM_tile_user_index, F16_toInt(e3->ch->no->x)-10, F16_toInt(e3->ch->no->y), &spr_fireball, 1);
+
+    char gems[5];
+    char life_char[5];
+    life = 100;
+    while(!signal_game_over && !signal_game_won){
+
+        VDP_drawText("Score: ", 26, 0);
+	    intToStr(score, gems, 3);
+        VDP_drawText(gems, 33, 0);
+	    intToStr(life, life_char, 3);
+        VDP_drawText(life_char, 20, 0);
+
+        CHARACTER_hud_update(key_icon, TRUE);
+
+        PLAYER_update(p, level);
+
+        e->ENEMY_update(e, p->ch);
+        e1->ENEMY_update(e1, p->ch);
+        e4->ENEMY_update(e4, p->ch);
+
+        BULLET_update(b2, level, p->ch);
+        BULLET_update(b3, level, p->ch);
+
+        SPR_update();
+        SYS_doVBlankProcess();
+    }
+
+
+    ENEMY_free(e2);
+    BULLET_free(b2);
 
     PLAYER_free(p);
     CHARACTER_free(key_icon);

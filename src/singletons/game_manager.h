@@ -19,6 +19,7 @@ extern bool signal_game_won;
 #define SCREEN_START 0
 #define SCREEN_CREDITS 10
 #define SCREEN_GAME_OVER 11
+#define SCREEN_VICTORY 12
 #define LEVEL_1 1
 #define LEVEL_2 2
 #define LEVEL_3 3

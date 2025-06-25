@@ -17,7 +17,7 @@
 #define PLAYER_OFFSET_LEFT 1
 #define PLAYER_OFFSET_RIGHT 15
 #define PLAYER_OFFSET_UP 1
-#define PLAYER_OFFSET_DOWN 16
+#define PLAYER_OFFSET_DOWN 14
 
 typedef struct {
     Character* ch; 

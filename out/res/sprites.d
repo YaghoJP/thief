@@ -3,7 +3,9 @@ C:/Users/yagho/Documents/dev/jogos/thief/res/sprites/collectables/key.png \
 C:/Users/yagho/Documents/dev/jogos/thief/res/sprites/level_2/level_2_map.png \
 C:/Users/yagho/Documents/dev/jogos/thief/res/sprites/collectables/chest.png \
 C:/Users/yagho/Documents/dev/jogos/thief/res/sprites/level_1/level_1.png \
+C:/Users/yagho/Documents/dev/jogos/thief/res/sprites/level_5/level_5_map.png \
 C:/Users/yagho/Documents/dev/jogos/thief/res/sprites/hud/diamond_hud.png \
+C:/Users/yagho/Documents/dev/jogos/thief/res/sprites/level_0/victory.png \
 C:/Users/yagho/Documents/dev/jogos/thief/res/sprites/level_4/level_4_map.png \
 C:/Users/yagho/Documents/dev/jogos/thief/res/sprites/player/thief.png \
 C:/Users/yagho/Documents/dev/jogos/thief/res/sprites/enemy/fixed_gray.png \
