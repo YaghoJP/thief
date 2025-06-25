@@ -14,7 +14,7 @@ typedef struct {
     const u16* collision_data;
     const TileSet* tileset;
     const Palette* palette;
-    Collectable* c[30];
+    Collectable* c[50];
     Chest* chest_key;
     u8 qt_collectables;
 } Level;

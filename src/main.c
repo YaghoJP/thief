@@ -10,13 +10,13 @@ int main(bool HardReset)
     SCENE_load(SCREEN_START);
 
     // if(!signal_player_is_dead && !signal_game_over)
-    // //     SCENE_load(LEVEL_1);
+    //     SCENE_load(LEVEL_1);
     // if(!signal_player_is_dead && !signal_game_over)
     //     SCENE_load(LEVEL_2);
-
+    // if(!signal_player_is_dead && !signal_game_over)
+    //     SCENE_load(LEVEL_3);
     if(!signal_player_is_dead && !signal_game_over)
-        SCENE_load(LEVEL_3);
-    
+        SCENE_load(LEVEL_4);
 
     if(signal_game_over)
     {
