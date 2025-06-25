@@ -6,6 +6,7 @@
 #include "level/level.h"
 #include "entities/player.h"
 #include "entities/enemy.h"
+#include "entities/bullet.h"
 #include "sprites.h"
 
 void SCENE_init();

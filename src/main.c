@@ -1,14 +1,21 @@
 #include "scene/scene.h"
 
-int main()
+int main(bool HardReset)
 {
+    if (!HardReset) 
+    {
+        SYS_hardReset();
+    }
 
     SCENE_load(SCREEN_START);
 
     // if(!signal_player_is_dead && !signal_game_over)
-    //     SCENE_load(LEVEL_1);
+    // //     SCENE_load(LEVEL_1);
+    // if(!signal_player_is_dead && !signal_game_over)
+    //     SCENE_load(LEVEL_2);
+
     if(!signal_player_is_dead && !signal_game_over)
-        SCENE_load(LEVEL_2);
+        SCENE_load(LEVEL_3);
     
 
     if(signal_game_over)

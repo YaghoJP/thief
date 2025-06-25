@@ -10,7 +10,9 @@ TILESET ts_level_2 "sprites/level_2/level_2_map.png" BEST ALL
 MAP map_level_2 "sprites/level_2/level_2_map.png" ts_level_2 BEST 0
 PALETTE pal_level_2 "sprites/level_2/level_2_map.png"
 
-
+TILESET ts_level_3 "sprites/level_3/level_3_map.png" BEST ALL
+MAP map_level_3 "sprites/level_3/level_3_map.png" ts_level_3 BEST 0
+PALETTE pal_level_3 "sprites/level_3/level_3_map.png"
 #-----------------Collectables-----------------
 SPRITE spr_diamond "sprites/collectables/diamond.png" 2 2 FAST 10
 SPRITE spr_key "sprites/collectables/key.png" 2 2 FAST 10
@@ -35,3 +37,4 @@ IMAGE game_over_screen "sprites/level_0/game_over.png" BEST
 #-----------------HUD-----------------
 SPRITE hud_diamond "sprites/hud/diamond_hud.png" 1 1 FAST 8
 SPRITE hud_key "sprites/hud/key_hud.png" 1 1 FAST 0
+SPRITE hud_life "sprites/hud/life.png" 1 1 FAST 0

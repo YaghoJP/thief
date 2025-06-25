@@ -1,23 +1,16 @@
 #include "player.h"
 
-s8 timer_take_damage = 0;
-s16 timer_to_dead = 0;
-
-Player* PLAYER_init(u16* ind, f16 x, f16 y, const SpriteDefinition* spr, bool is_fb)
+Player* PLAYER_init(u16* ind, f16 x, f16 y, const SpriteDefinition* spr)
 {
     Player* p = MEM_alloc(sizeof(Player));
-    if(is_fb) p->ch = CHARACTER_init(ind, x, y, PAL_ENEMY, spr);
-    else  p->ch = CHARACTER_init(ind, x, y, PAL_PLAYER, spr);
+    p->ch = CHARACTER_init(ind, x, y, PAL_PLAYER, spr);
     p->ch->anim_sprite = 0;
     p->ch->take_damage = PLAYER_take_damage;
     p->ch->health = 1;
     SPR_setAnim(p->ch->no->sprite, p->ch->anim_sprite);
-    p->is_fireball = is_fb;
-    p->wall_coll = FALSE;
 
     return p;
 }
-
 void PLAYER_free(Player* p){
     if(p)
     {
@@ -125,12 +118,12 @@ void PLAYER_check_collision(Player *p, Level *l)
             collision_left = true;
             break;
         }
-        if (l->collision_data[y * COLLISION_COLUMN + xtile_left] == DIAMONDS && p->is_fireball == FALSE)
+        if (l->collision_data[y * COLLISION_COLUMN + xtile_left] == DIAMONDS)
         {
             LEVEL_collect(xtile_left, y, l->c, l->qt_collectables);
             break;
         }
-        if (l->collision_data[y * COLLISION_COLUMN + xtile_left] == KEY && p->is_fireball == FALSE)
+        if (l->collision_data[y * COLLISION_COLUMN + xtile_left] == KEY)
         {
             LEVEL_key_collect(l->chest_key);
             break;
@@ -144,12 +137,12 @@ void PLAYER_check_collision(Player *p, Level *l)
             collision_right = true;
             break;
         }
-        if (l->collision_data[y * COLLISION_COLUMN + xtile_right] == DIAMONDS && p->is_fireball == FALSE)
+        if (l->collision_data[y * COLLISION_COLUMN + xtile_right] == DIAMONDS)
         {
             LEVEL_collect(xtile_right, y, l->c, l->qt_collectables);
             break;
         }
-        if (l->collision_data[y * COLLISION_COLUMN + xtile_right] == KEY && p->is_fireball == FALSE)
+        if (l->collision_data[y * COLLISION_COLUMN + xtile_right] == KEY)
         {
             LEVEL_key_collect(l->chest_key);
             break;
@@ -165,13 +158,13 @@ void PLAYER_check_collision(Player *p, Level *l)
             break;
         }
 
-        if (l->collision_data[ytile_up * COLLISION_COLUMN + x] == DIAMONDS && p->is_fireball == FALSE)
+        if (l->collision_data[ytile_up * COLLISION_COLUMN + x] == DIAMONDS)
         {
             LEVEL_collect(x, ytile_up, l->c, l->qt_collectables);
             break;
         }
 
-        if (l->collision_data[ytile_up * COLLISION_COLUMN + x] == KEY && p->is_fireball == FALSE)
+        if (l->collision_data[ytile_up * COLLISION_COLUMN + x] == KEY)
         {
             LEVEL_key_collect(l->chest_key);
             break;
@@ -187,13 +180,13 @@ void PLAYER_check_collision(Player *p, Level *l)
             break;
         }
 
-        if(l->collision_data[ytile_down * COLLISION_COLUMN + x] == DIAMONDS && p->is_fireball == FALSE)
+        if(l->collision_data[ytile_down * COLLISION_COLUMN + x] == DIAMONDS)
         {
             LEVEL_collect(x, ytile_down, l->c, l->qt_collectables);
             break;
         }
 
-        if(l->collision_data[ytile_down * COLLISION_COLUMN + x] == KEY && p->is_fireball == FALSE)
+        if(l->collision_data[ytile_down * COLLISION_COLUMN + x] == KEY)
         {
             LEVEL_key_collect(l->chest_key);
             break;
@@ -202,78 +195,21 @@ void PLAYER_check_collision(Player *p, Level *l)
 
     if(collision_left || collision_right)
     {
-        if(p->is_fireball) {
-            p->wall_coll = TRUE;
-            return;
-        }
         p->ch->vel.x = 0;
     }
     if(collision_up || collision_down)
     {
-        if(p->is_fireball) {
-            p->wall_coll = TRUE;
-            return;
-        }
         p->ch->vel.y = 0;
     }
 }
 
 void PLAYER_take_damage(Character* c)
 {
-    timer_take_damage++;
-    timer_to_dead++;
-
-    if (timer_to_dead >= 60)
+    life--;
+    if (life <= 0)
     {
         c->health = 0;
-        timer_to_dead = 0;
-
         signal_game_over = TRUE;
         signal_player_is_dead = TRUE;
     }
-
-    if(timer_take_damage % 4 == 0)
-    {
-        SPR_setVisibility(c->no->sprite, VISIBLE);
-    }
-    else if(timer_take_damage % 2 == 0)
-    {
-        SPR_setVisibility(c->no->sprite, HIDDEN);
-    }
-
-    if(timer_take_damage > 30)
-    {
-        timer_take_damage = 0;
-        SPR_setVisibility(c->no->sprite, VISIBLE);
-    }
-
-}
-
-void PLAYER_fireball_update(Player *fb, Level *l, Enemy* e, Player* p)
-{
-  
-    PLAYER_check_collision(fb, l);
-
-    PLAYER_check_player_collision(p);
-    if(fb->wall_coll)
-    {
-        fb->ch->no->x = e->pos_x_start;
-        fb->ch->no->y = e->pos_y_start;
-        fb->wall_coll = FALSE;
-    }else
-    {
-        if(e->direction)
-        { 
-            fb->ch->vel.x = +F16(2);
-        }else
-        {
-            fb->ch->vel.y = -F16(2);
-        }
-
-        fb->ch->no->x = fb->ch->no->x + fb->ch->vel.x;
-        fb->ch->no->y = fb->ch->no->y + fb->ch->vel.y;
-    }
-
-    SPR_setPosition(fb->ch->no->sprite, F16_toInt(fb->ch->no->x), F16_toInt(fb->ch->no->y));
-    return;
 }

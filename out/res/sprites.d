@@ -10,6 +10,8 @@ C:/Users/yagho/Documents/dev/jogos/thief/res/sprites/collectables/diamond.png \
 C:/Users/yagho/Documents/dev/jogos/thief/res/sprites/enemy/patrol_green.png \
 C:/Users/yagho/Documents/dev/jogos/thief/res/sprites/enemy/patrol_red.png \
 C:/Users/yagho/Documents/dev/jogos/thief/res/sprites/level_0/start.png \
+C:/Users/yagho/Documents/dev/jogos/thief/res/sprites/hud/life.png \
+C:/Users/yagho/Documents/dev/jogos/thief/res/sprites/level_3/level_3_map.png \
 C:/Users/yagho/Documents/dev/jogos/thief/res/sprites/enemy/fireball.png \
 C:/Users/yagho/Documents/dev/jogos/thief/res/sprites/hud/key_hud.png \
 C:/Users/yagho/Documents/dev/jogos/thief/res/sprites/level_0/game_over.png \

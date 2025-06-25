@@ -14,6 +14,12 @@ typedef void (*ENEMY_update_funcao)(Enemy* e, Character* p);
 
 #define SPR_PLAYER 8
 
+typedef struct {
+    bool x;
+    bool y;
+} Direction;
+
+
 typedef enum TYPE {
     PATROL, 
     FIXED
@@ -28,6 +34,7 @@ struct Enemy{
     fix16 pos_y_end;
     bool in_going;
     bool direction;
+    Direction dir;
     ENEMY_update_funcao ENEMY_update;
 };
 

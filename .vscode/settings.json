@@ -2,6 +2,8 @@
     "files.associations": {
         "collectables.h": "c",
         "level.h": "c",
-        "game_manager.h": "c"
+        "game_manager.h": "c",
+        "scene.h": "c",
+        "character.h": "c"
     }
 }

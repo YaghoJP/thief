@@ -6,7 +6,7 @@
 
 //globals
 extern u16 score;
-extern char* score_hud;
+extern u16 life;
 
 //Signals
 extern bool signal_game_started;
@@ -44,5 +44,7 @@ extern bool signal_game_won;
 #define DIAMONDS 5
 #define KEY 6
 #define START_TILE 4
+
+#define COLLISION_COLUMN 20
 
 #endif
