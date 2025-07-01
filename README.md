@@ -55,4 +55,8 @@ Compatível com **Windows** e **Linux** (via Wine)
 <div align="center">
   <img src="https://github.com/user-attachments/assets/508d3c23-9a3b-45bb-a526-151ebee4ddb8" alt="Demonstração do jogo" />
 </div>
-    
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/26430e94-c029-4b60-9618-4c660f3c5aa9" alt="Demonstração do jogo" />
+</div>
+
