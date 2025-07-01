@@ -1,10 +1,10 @@
-# thief
+# Thief
+
+Jogo desenvolvido para fins de aprendizado na matéria de desenvolvimento de plataformas legadas.
 
 <div align="center">
   <img src="https://github.com/user-attachments/assets/e73afc83-c8d5-4cdf-b906-b06a373ce537" alt="Thief - gameplay" />
 </div>
-
-Jogo desenvolvido para fins de aprendizado na matéria de desenvolvimento de plataformas legadas.
 
 ## Índice
 
