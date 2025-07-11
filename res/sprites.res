@@ -44,7 +44,16 @@ IMAGE credits_screen "sprites/level_0/screen_credists.png" BEST
 IMAGE game_over_screen "sprites/level_0/game_over.png" BEST
 IMAGE victory_screen "sprites/level_0/victory.png" BEST
 
+IMAGE level_1_screen "sprites/level_1/level_screen.png" BEST
+IMAGE level_2_screen "sprites/level_2/level_screen.png" BEST
+IMAGE level_3_screen "sprites/level_3/level_screen.png" BEST
+IMAGE level_4_screen "sprites/level_4/level_screen.png" BEST
+IMAGE level_5_screen "sprites/level_5/level_screen.png" BEST
+
 #-----------------HUD-----------------
 SPRITE hud_diamond "sprites/hud/diamond_hud.png" 1 1 FAST 8
 SPRITE hud_key "sprites/hud/key_hud.png" 1 1 FAST 0
 SPRITE hud_life "sprites/hud/life.png" 1 1 FAST 0
+
+#-----------------AUDIO-----------------
+XGM track1 "audio/free_vgms_jukebox_v1.2.0" -1

@@ -29,6 +29,27 @@ void SCENE_init()
     SYS_doVBlankProcess();
 }
 
+
+void SCENE_level_swap(const Image* img)
+{
+    u16 VRAM_tile_index = TILE_USER_INDEX;
+
+    BACKGROUND_init(&VRAM_tile_index, img);
+
+    SYS_doVBlankProcess();
+
+    s16 timer_swap_screen = 0;
+    while(TRUE)
+    {
+        timer_swap_screen++;
+
+        if(timer_swap_screen/TIMEPERSECOND == 2)
+            break;
+        SPR_update();
+        SYS_doVBlankProcess();
+    }
+}
+
 void SCENE_unload()
 {
     SPR_reset();
@@ -48,25 +69,30 @@ void SCENE_load(u8 scene)
 {
     SCENE_unload();
     SCENE_init();
-
+        
     switch (scene)
     {
     case SCREEN_START:
         SCENE_screen_start();
         break;
     case LEVEL_1:
+        SCENE_level_swap(&level_1_screen);
         SCENE_level_1();
         break;
     case LEVEL_2:
+        SCENE_level_swap(&level_2_screen);
         SCENE_level_2();
         break;
     case LEVEL_3:
+        SCENE_level_swap(&level_3_screen);
         SCENE_level_3();
         break;
     case LEVEL_4:
+        SCENE_level_swap(&level_4_screen);
         SCENE_level_4();
         break;
     case LEVEL_5:
+        SCENE_level_swap(&level_5_screen);
         SCENE_level_5();
         break;
     case SCREEN_CREDITS:
