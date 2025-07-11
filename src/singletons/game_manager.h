@@ -46,6 +46,7 @@ extern bool signal_game_won;
 #define DIAMONDS 5
 #define KEY 6
 #define START_TILE 4
+#define HEART 7
 
 #define COLLISION_COLUMN 20
 

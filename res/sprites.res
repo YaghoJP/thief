@@ -26,6 +26,7 @@ PALETTE pal_level_5 "sprites/level_5/level_5_map.png"
 SPRITE spr_diamond "sprites/collectables/diamond.png" 2 2 FAST 10
 SPRITE spr_key "sprites/collectables/key.png" 2 2 FAST 10
 SPRITE spr_chest "sprites/collectables/chest.png" 2 2 FAST 0
+SPRITE spr_heart "sprites/collectables/life_collectable.png" 2 2 FAST 10
 
 
 #-----------------PLAYERS-----------------

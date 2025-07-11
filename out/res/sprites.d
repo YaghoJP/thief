@@ -25,4 +25,5 @@ C:/Users/yagho/Documents/dev/jogos/thief/res/sprites/collectables/diamond.png \
 C:/Users/yagho/Documents/dev/jogos/thief/res/sprites/enemy/patrol_green.png \
 C:/Users/yagho/Documents/dev/jogos/thief/res/sprites/level_2/level_screen.png \
 C:/Users/yagho/Documents/dev/jogos/thief/res/sprites/hud/key_hud.png \
+C:/Users/yagho/Documents/dev/jogos/thief/res/sprites/collectables/life_collectable.png \
 C:/Users/yagho/Documents/dev/jogos/thief/res/sprites/bg/bg.png

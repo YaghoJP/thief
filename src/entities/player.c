@@ -119,7 +119,7 @@ void PLAYER_check_collision(Player *p, Level *l)
             collision_left = true;
             break;
         }
-        if (l->collision_data[y * COLLISION_COLUMN + xtile_left] == DIAMONDS)
+        if (l->collision_data[y * COLLISION_COLUMN + xtile_left] == DIAMONDS || l->collision_data[y * COLLISION_COLUMN + xtile_left] == HEART)
         {
             LEVEL_collect(xtile_left, y, l->c, l->qt_collectables);
             break;
@@ -138,7 +138,7 @@ void PLAYER_check_collision(Player *p, Level *l)
             collision_right = true;
             break;
         }
-        if (l->collision_data[y * COLLISION_COLUMN + xtile_right] == DIAMONDS)
+        if (l->collision_data[y * COLLISION_COLUMN + xtile_right] == DIAMONDS || l->collision_data[y * COLLISION_COLUMN + xtile_right] == HEART)
         {
             LEVEL_collect(xtile_right, y, l->c, l->qt_collectables);
             break;
@@ -159,7 +159,7 @@ void PLAYER_check_collision(Player *p, Level *l)
             break;
         }
 
-        if (l->collision_data[ytile_up * COLLISION_COLUMN + x] == DIAMONDS)
+        if (l->collision_data[ytile_up * COLLISION_COLUMN + x] == DIAMONDS || l->collision_data[ytile_up * COLLISION_COLUMN + x] == HEART)
         {
             LEVEL_collect(x, ytile_up, l->c, l->qt_collectables);
             break;
@@ -181,7 +181,7 @@ void PLAYER_check_collision(Player *p, Level *l)
             break;
         }
 
-        if(l->collision_data[ytile_down * COLLISION_COLUMN + x] == DIAMONDS)
+        if(l->collision_data[ytile_down * COLLISION_COLUMN + x] == DIAMONDS || l->collision_data[ytile_down * COLLISION_COLUMN + x] == HEART)
         {
             LEVEL_collect(x, ytile_down, l->c, l->qt_collectables);
             break;

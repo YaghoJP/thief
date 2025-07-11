@@ -8,9 +8,10 @@ typedef struct{
     u8 value;
     bool key;
     bool is_active;
+    bool is_heart;
 }Collectable;
 
-Collectable* COLLECTABLE_init(u16* ind, f16 x, f16 y, const SpriteDefinition* spr);
+Collectable* COLLECTABLE_init(u16* ind, f16 x, f16 y, const SpriteDefinition* spr, bool lifeadd);
 void COLLECTABLE_free(Collectable* c);
 
 #endif

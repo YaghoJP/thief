@@ -23,6 +23,7 @@ extern const Palette pal_level_5;
 extern const SpriteDefinition spr_diamond;
 extern const SpriteDefinition spr_key;
 extern const SpriteDefinition spr_chest;
+extern const SpriteDefinition spr_heart;
 extern const SpriteDefinition spr_thief;
 extern const SpriteDefinition spr_enemy_patrol_green;
 extern const SpriteDefinition spr_enemy_patrol_red;
