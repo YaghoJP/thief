@@ -3,6 +3,7 @@
 
 #include <genesis.h>
 #include "sprite_eng.h"
+#include "res/sprites.h"
 
 //globals
 extern u16 score;
@@ -47,5 +48,7 @@ extern bool signal_game_won;
 #define START_TILE 4
 
 #define COLLISION_COLUMN 20
+
+void GAME_MANAGER_play_music();
 
 #endif

@@ -56,4 +56,5 @@ SPRITE hud_key "sprites/hud/key_hud.png" 1 1 FAST 0
 SPRITE hud_life "sprites/hud/life.png" 1 1 FAST 0
 
 #-----------------AUDIO-----------------
-XGM track1 "audio/free_vgms_jukebox_v1.2.0" -1
+#XGM music "audio/cant_go_home_again.vgm" -1
+XGM music "audio/exposition.vgm" -1

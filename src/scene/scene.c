@@ -43,7 +43,7 @@ void SCENE_level_swap(const Image* img)
     {
         timer_swap_screen++;
 
-        if(timer_swap_screen/TIMEPERSECOND == 2)
+        if(timer_swap_screen/TIMEPERSECOND == 1)
             break;
         SPR_update();
         SYS_doVBlankProcess();
@@ -124,6 +124,9 @@ void SCENE_screen_victory()
         if(button & BUTTON_START){
             break;
         }
+        
+        if(!XGM_isPlaying())
+            GAME_MANAGER_play_music();
 
         SPR_update();
         SYS_doVBlankProcess();
@@ -146,6 +149,9 @@ void SCENE_screen_game_over()
         if(button & BUTTON_START){
             break;
         }
+
+        if(!XGM_isPlaying())
+            GAME_MANAGER_play_music();
 
         SPR_update();
         SYS_doVBlankProcess();
@@ -171,6 +177,9 @@ void SCENE_screen_credits()
         if(button & BUTTON_START){
             break;
         }
+
+        if(!XGM_isPlaying())
+            GAME_MANAGER_play_music();
 
         SPR_update();
         SYS_doVBlankProcess();
@@ -269,6 +278,10 @@ void SCENE_level_1()
         e2->ENEMY_update(e2, p->ch);
         e3->ENEMY_update(e3, p->ch);
         e4->ENEMY_update(e4, p->ch);
+
+        if(!XGM_isPlaying())
+            GAME_MANAGER_play_music();
+
         SPR_update();
         SYS_doVBlankProcess();
     }
@@ -343,6 +356,9 @@ void SCENE_level_2()
         BULLET_update(b1, level, p->ch);
         BULLET_update(b2, level, p->ch);
         
+        if(!XGM_isPlaying())
+            GAME_MANAGER_play_music();
+
         SPR_update();
         SYS_doVBlankProcess();
     }
@@ -424,6 +440,10 @@ void SCENE_level_3()
         BULLET_update(b6, level, p->ch);
 
         CHARACTER_hud_update(key_icon, TRUE);
+
+
+        if(!XGM_isPlaying())
+            GAME_MANAGER_play_music();
 
         SPR_update();
         SYS_doVBlankProcess();
@@ -509,6 +529,9 @@ void SCENE_level_4()
         BULLET_update(b2, level, p->ch);
         BULLET_update(b3, level, p->ch);
 
+        if(!XGM_isPlaying())
+            GAME_MANAGER_play_music();
+
         SPR_update();
         SYS_doVBlankProcess();
     }
@@ -584,6 +607,9 @@ void SCENE_level_5()
 
         BULLET_update(b2, level, p->ch);
         BULLET_update(b3, level, p->ch);
+
+        if(!XGM_isPlaying())
+            GAME_MANAGER_play_music();
 
         SPR_update();
         SYS_doVBlankProcess();

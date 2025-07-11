@@ -7,6 +7,8 @@ int main(bool HardReset)
         SYS_hardReset();
     }
 
+    GAME_MANAGER_play_music();
+    
     SCENE_load(SCREEN_START);
 
     if(!signal_player_is_dead && !signal_game_over)
